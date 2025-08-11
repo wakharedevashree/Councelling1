@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MHT-CET Counseling Assistant</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Global Styles */
+      :root {
+        --primary: #0d9488;
+        --primary-dark: #1d4ed8;
+        --secondary: #f59e0b;
+        --dark: #1e293b;
+        --light: #f8fafc;
+        --gray: #64748b;
+        --light-gray: #e2e8f0;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        color: var(--gray);
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        padding: 20px 0;
+      }
+
+      .navbar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--dark);
+        font-family: cursive;
+      }
+
+      .logo span {
+        color: var(--primary);
+        font-size: 2.5rem;
+        font-family: cursive;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--dark);
+        font-weight: 500;
+        transition: color 0.2s;
+        font-size: 1.2rem;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+        text-decoration: dashed;
+      }
+
+      .login_btn {
+        padding: 8px 20px;
+        background-color: white;
+        color: white;
+        border-radius: 20px;
+        border: 3px solid var(--primary);
+      }
+
+      .login_btn:hover {
+        background-color: var(--primary);
+        color: white;
+      }
+
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--dark);
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 120px 0 80px;
+        margin-top: 80px;
+
+       background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+url("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQJp5fvX7HXE-NuBYXSFlSO6jKFita0qAHWRUuI9b4NHOgWs0CY")
+no-repeat center center fixed;
+
+        background-size: cover;
+        background-position: center 70%;
+
+        /* background: url('back.avif') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80");
+      */
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        font-family: cursive;
+        color: white;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      }
+
+      .hero h1 span {
+        color: var(--primary);
+        font-family: cursive;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+        margin-top: 3rem;
+        margin-bottom: 4rem;
+        text-align: center;
+        color: rgb(45, 45, 45);
+        font-size: 700;
+        color: #eff1f4;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      }
+
+      .cta-buttons .btn {
+        display: inline-block;
+        padding: 15px 45px;
+        border-radius: 8px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        text-align: center;
+        background-color: var(--primary);
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .cta-buttons .btn:hover {
+        background-color: white;
+        color: var(--primary);
+      }
+
+      .about {
+        padding-top: 4rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(84, 83, 83, 0.1);
+        padding-bottom: 4rem;
+      }
+
+      .about .container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .about-content {
+        padding-top: 3rem;
+        flex: 1;
+      }
+
+      .about-image {
+        padding-top: 3rem;
+        flex: 1;
+        position: relative;
+      }
+
+      .about-image img {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        transform: perspective(1000px) rotateY(-10deg);
+        transition: transform 0.5s;
+      }
+
+      .about-image:hover img {
+        transform: perspective(1000px) rotateY(0deg);
+      }
+
+      .about-image:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 5px solid var(--accent);
+        border-radius: 12px;
+        top: 20px;
+        left: 20px;
+        z-index: -1;
+        transition: all 0.3s;
+      }
+
+      .about-image:hover:before {
+        top: 15px;
+        left: 15px;
+      }
+
+      .about h2 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        /* display: inline-block; */
+        text-align: center;
+        color: var(--primary);
+        font-family: cursive;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+      }
+
+      .about h2:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 25%;
+        width: 50%;
+        height: 4px;
+        background: var(--primary);
+        border-radius: 2px;
+      }
+
+      .about-content p {
+        font-size: 1.4rem;
+        color: rgb(47, 47, 47);
+      }
+
+      .stats {
+        display: flex;
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 5px;
+      }
+
+      .stat-label {
+        font-size: 1rem;
+        color: var(--gray);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 80px 0;
+        background-color: #f1f5f9;
+      }
+
+      .features h2 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 3rem;
+        font-family: cursive;
+        color: var(--primary);
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-card {
+        /* background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+
+      transition: transform 0.3s, box-shadow 0.3s; */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        padding-top: 1rem;
+        transition: all 0.3s ease-in-out;
+        border-radius: 40%;
+      }
+
+      .feature-card:hover {
+        /* transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); */
+        transform: scale(1.1);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .feature-card .icon {
+        width: 60px;
+        height: 60px;
+        background-color: #dbeafe;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        color: var(--primary);
+        font-size: 1.5rem;
+        text-align: center;
+       
+      }
+
+      .feature-card .icon i {
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+
+      .feature-card h3 {
+        font-size: 1.7rem;
+        margin-bottom: 15px;
+        padding: 1rem 2rem;
+      }
+
+      .feature-card p {
+        padding: 0 3rem;
+        font-size: 1.3rem;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 60px 0 20px;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        min-width: 300px;
+        padding-bottom: 1rem;
+      }
+
+      .footer-logo .logo {
+        color: white;
+        padding-bottom: 3rem;
+      }
+
+      .footer-logo p {
+        color: #ebecee;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 40px;
+      }
+
+      .links-column {
+        padding-right: 4.5rem;
+      }
+
+      .links-column h4 {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+        text-decoration: underline;
+      }
+
+      .links-column a {
+        display: block;
+        color: #ebecee;
+        text-decoration: none;
+        margin-bottom: 10px;
+        transition: color 0.3s;
+        font-size: 1.2rem;
+      }
+
+      .links-column a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        border-top: 1px solid #334155;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .social-links a {
+        color: white;
+        font-size: 1.2rem;
+        transition: color 0.3s;
+      }
+
+      .social-links a:hover {
+        color: var(--secondary);
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .hero .container,
+        .demo .container {
+          flex-direction: column;
+        }
+
+        .hero-content,
+        .demo-content {
+          order: 1;
+          text-align: center;
+        }
+
+        .hero-image,
+        .demo-image {
+          order: 2;
+        }
+
+        .cta-buttons {
+          justify-content: center;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .features h2,
+        .demo h2 {
+          font-size: 2rem;
+        }
+        /* Mobile menu dropdown */
+.nav-links.mobile {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  position: absolute;
+  top: 70px; /* below navbar */
+  right: 0;
+  width: 100%;
+  padding: 1rem 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links.mobile a {
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  border-top: 1px solid #eee;
+}
+
+.nav-links.mobile a:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+  .nav-links.mobile {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    top: 70px; /* below navbar */
+    right: 0;
+    width: 100%;
+    padding: 1rem 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.mobile a {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    border-top: 1px solid #eee;
+  }
+
+  .nav-links.mobile a:hover {
+    background-color: var(--primary);
+    color: white;
+  }
+}
+
+
+      }
+    </style>
+  </head>
+  <body>
+    Navigation Bar
+    <nav class="navbar">
+      <div class="container">
+        <a href="#" class="logo"><span>MHTCET</span>Guide</a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#about">About</a>
+          <a href="/login" class="login_btn">Login</a>
+        </div>
+        <button class="hamburger">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero_content">
+        <h1>
+          “Unlock Your Future with <span>AI-Powered </span>MHT-CET College
+          Predictions!”
+        </h1>
+        <p>
+          "Let AI guide your MHT-CET journey get personalized college matches
+          based on your score,<br />
+          preferences, and future goals."
+        </p>
+        <div class="cta-buttons">
+          <a href="/signup" class="btn">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <h2>About MHT-CET Guide</h2>
+      <div class="container">
+        <div class="about-content">
+          <p>
+            MHT-CET Guide is Maharashtra’s top AI-powered platform helping
+            engineering aspirants navigate college admissions with ease.
+          </p>
+          <p>
+            We use advanced AI and years of MHT-CET data to provide accurate,
+            personalized admission guidance.
+          </p>
+
+          <!-- <p>What sets us apart:</p>
+        <ul style="margin-left: 20px; margin-bottom: 20px; color:rgb(35, 35, 35);">
+          <li>Proprietary AI algorithms analyzing 5+ years of cutoff data</li>
+          <li>Personalized recommendations based on your exact score and preferences</li>
+          <li>Real-time updates on seat availability and admission trends</li>
+          <li>Expert-verified information from Maharashtra's top engineering colleges</li>
+        </ul> -->
+          <div class="stats">
+            <div class="stat-item">
+              <div class="stat-number">10,000+</div>
+              <div class="stat-label">Students Helped</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">200+</div>
+              <div class="stat-label">Colleges Analyzed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">98%</div>
+              <div class="stat-label">Accuracy Rate</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+            alt="Team working on AI counseling platform"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <div class="container">
+        <h2>How We Help You</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="icon">
+              <i class="fas fa-university"></i>
+            </div>
+            <h3>College Matching</h3>
+            <p>
+              Get personalized college recommendations based on your MHT-CET
+              score and preferred branches.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Cutoff Analysis</h3>
+            <p>
+              View historical cutoff trends and AI-predicted cutoffs for current
+              year admissions.
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3>AI Counselor</h3>
+            <p>
+              Chat with our AI assistant to get instant answers to your
+              admission queries.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <a href="#" class="logo">MHT<span>CET</span>Guide</a>
+            <p>Helping Maharashtra's engineering <br />aspirants since 2024</p>
+          </div>
+          <!-- <div class="footer-links"> -->
+          <div class="links-column">
+            <h4>Resources</h4>
+            <a href="/blog">Blog</a>
+            <a href="/faq">FAQ</a>
+            <a href="/cutoffs">Cutoff Trends</a>
+          </div>
+          <div class="links-column">
+            <h4>Company</h4>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact</a>
+            <a href="/privacy">Privacy Policy</a>
+          </div>
+          <!-- </div> -->
+        </div>
+        <div class="footer-bottom">
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+          <p>2024 MHT-CET Guide. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js">
+const hamburger = document.querySelector(".hamburger");
+const navLinks = document.querySelector(".nav-links");
+
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("mobile");
+});
+
+    </script>
+  </body>
+</html>
