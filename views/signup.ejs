@@ -228,6 +228,97 @@
         gap: 30px;
       }
 
+      /* ========== Responsive Styling ========== */
+
+/* Tablets and below */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar .container {
+    padding: 0 1rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+
+  /* Form Container */
+  .form_container {
+    width: 90%;
+    margin-top: 80px;
+    padding: 25px 20px;
+  }
+
+  /* Form Grid becomes single column */
+  .form_grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  label {
+    font-size: 1.1rem;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
+  button[type="submit"] {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .login-link {
+    font-size: 1.1rem;
+  }
+}
+
+/* Small mobiles */
+@media (max-width: 480px) {
+  .logo span {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .form_container {
+    padding: 20px 15px;
+  }
+
+  label {
+    font-size: 1rem;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+
+  button[type="submit"] {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .login-link {
+    font-size: 1rem;
+  }
+}
+
+
       @media (max-width: 768px) {
         .form_grid {
           grid-template-columns: 1fr;
